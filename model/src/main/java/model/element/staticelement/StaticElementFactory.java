@@ -22,9 +22,6 @@ public class StaticElementFactory implements IStaticElementFactory{
 	}
 
 	public IElement createStaticElement(IPosition pos, String consol_log_element) {
-		System.out.println(pos.getX() + " : x | y : "+pos.getY());
-		System.out.println(consol_log_element);
-
 		switch(consol_log_element) {
 		case("x"):
 			return new BorderLevel(new Sprite("x"),pos);

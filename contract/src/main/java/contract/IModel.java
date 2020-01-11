@@ -2,7 +2,7 @@ package contract;
 
 import java.util.Observable;
 
-import model.map.IMap;
+import model.level.ILevel;
 
 /**
  * The Interface IModel.
@@ -18,5 +18,5 @@ public interface IModel {
 	 */
 	Observable getObservable();
 
-	IMap getMap();
+	ILevel getLevel();
 }
