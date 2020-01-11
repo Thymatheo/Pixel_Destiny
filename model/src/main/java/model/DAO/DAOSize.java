@@ -37,14 +37,11 @@ public class DAOSize extends DAOEntity<Size> {
 		Size size = new Size();
 		try {
 			final String sql = "{CALL get_map_size(?)}";
-			System.out.println(sql);
 			final CallableStatement call = this.getConnection().prepareCall(sql);
 			call.setInt(1, id);
-			System.out.println(call);
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
 			if (resultSet.first()) {
-				System.out.println("x : "+resultSet.getInt("x")+" | y : " +resultSet.getInt("y"));
 				size = new Size(resultSet.getInt("x"), resultSet.getInt("y"));
 			}
 			return size;

@@ -18,6 +18,10 @@ public class Sprite implements ISprite {
 			this.setImageName(imageName);
 			this.loadImage(this.getImageName());
 		}
+		
+		public Sprite(String consoleImage) {
+			this.setConsoleImage(consoleImage);
+		}
 
 		public String getConsoleImage() {
 			return ConsoleImage;

@@ -6,6 +6,8 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import model.map.IMap;
+
 /**
  * The Class ViewPanel.
  *
@@ -65,5 +67,24 @@ class ViewPanel extends JPanel implements Observer {
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+		IMap map =  this.getViewFrame().getModel().getMap();
+		System.out.println("x :"+map.getLenght()+" | y : "+map.getWidth());
+		for (int y=0; y < map.getWidth(); ++y) {
+			for (int x=0 ; x < map.getLenght(); ++x) {
+				if (map.getOnTheMap(x, y)!=null) {
+					if(map.getOnTheMap(x, y).getSprite().getConsoleImage()!="f") {
+						System.out.print(map.getOnTheMap(x, y).getSprite().getConsoleImage()+" ");
+					}else {
+						System.out.print("  ");
+
+					}
+				}else {
+					System.out.print(" ");
+				}
+
+			}
+			System.out.println("");
+		
+		}
 	}
 }

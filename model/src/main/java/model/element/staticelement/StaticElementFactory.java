@@ -22,10 +22,16 @@ public class StaticElementFactory implements IStaticElementFactory{
 	}
 
 	public IElement createStaticElement(IPosition pos, String consol_log_element) {
+		System.out.println(pos.getX() + " : x | y : "+pos.getY());
+		System.out.println(consol_log_element);
 
 		switch(consol_log_element) {
 		case("x"):
-			return new IsPenetrable(new BorderLevel(new Sprite("x", null),pos));
+			return new BorderLevel(new Sprite("x"),pos);
+		case("s"):
+			return new Spawn(new Sprite("s"), pos);
+		case("f"):
+			return new Floor(new Sprite("f"),pos);
 		default:
 			return null;
 		}

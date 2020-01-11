@@ -54,7 +54,6 @@ public class DAOUnLoadedMap extends DAOEntity<UnLoadedMap> {
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
 			while (resultSet.next()) {
-				System.out.println("consol log : "+resultSet.getString("console_log")+" | coord x :"+ resultSet.getInt("coord_x")+" | coord y :"+  resultSet.getInt("coord_y"));
 				map.setOnTheMap(resultSet.getString("console_log"), resultSet.getInt("coord_x"), resultSet.getInt("coord_y"));
 			}
 			return map;

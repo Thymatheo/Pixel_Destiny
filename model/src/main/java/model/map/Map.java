@@ -2,7 +2,7 @@ package model.map;
 
 import model.element.IElement;
 
-public class Map {
+public class Map implements IMap{
 
 	private int lenght;
 	private int width;
@@ -45,6 +45,12 @@ public class Map {
 
 	public void setOnTheMap(IElement element, int x, int y) {
 		this.getMap()[x][y] = element;
+	}
+
+	@Override
+	public IElement getOnTheMap(int x, int y) {
+		// TODO Auto-generated method stub
+		return this.getMap()[x][y];
 	}
 
 }
