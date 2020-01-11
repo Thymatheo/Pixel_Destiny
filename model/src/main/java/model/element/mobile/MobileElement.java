@@ -5,6 +5,8 @@ import model.element.IPosition;
 import model.element.ISprite;
 
 public class MobileElement extends Element {
+	
+	private float moveSpeed;
 
 	public MobileElement(Element element) {
 		super(element);

@@ -19,4 +19,9 @@ public interface IController {
 	 *          the controller order
 	 */
 	public void orderPerform(ControllerOrder controllerOrder);
+	
+	void setPlayerOrder(ControllerOrder playerOrder);
+	
+	ControllerOrder getPlayerOrder();
+
 }

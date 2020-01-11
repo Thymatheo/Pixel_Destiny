@@ -15,6 +15,10 @@ public final class Controller implements IController {
 
 	/** The model. */
 	private IModel	model;
+	
+	private IGameLoop gameLoop;
+	
+	private ControllerOrder playerOrder = ControllerOrder.Nothing;
 
 	/**
 	 * Instantiates a new controller.
@@ -71,11 +75,31 @@ public final class Controller implements IController {
 	 *
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
+	
+	public void play() {
+		this.setGameLoop(new GameLoop(this));
+		this.getGameLoop().run();
+	}
+	
+	
 	public void orderPerform(final ControllerOrder controllerOrder) {
-		switch (controllerOrder) {
-			default:
-				break;
-		}
+
+	}
+
+	public ControllerOrder getPlayerOrder() {
+		return playerOrder;
+	}
+
+	public void setPlayerOrder(ControllerOrder playerOrder) {
+		this.playerOrder = playerOrder;
+	}
+
+	public IGameLoop getGameLoop() {
+		return gameLoop;
+	}
+
+	public void setGameLoop(IGameLoop gameLoop) {
+		this.gameLoop = gameLoop;
 	}
 
 }
