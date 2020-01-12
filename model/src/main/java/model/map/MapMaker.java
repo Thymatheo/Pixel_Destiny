@@ -22,7 +22,10 @@ private StaticElementFactory staticFactory;
 		IMap map = new Map(mapSize.getLenght(),mapSize.getWidth());
 		for(int x = 0; x< mapSize.getLenght();++x) {
 			for(int y = 0; y< mapSize.getWidth();++y) {
-				map.setOnTheMap(this.getStaticFactory().createStaticElement(new Position(x,y), mapLoaded.getOnTheMap(x, y)), x, y);
+				if (mapLoaded.getOnTheMap(x, y)!=null) {
+					map.setOnTheMap(this.getStaticFactory().createStaticElement(new Position(x,y), mapLoaded.getOnTheMap(x, y)), x, y);
+
+				}
 			}
 		}
 		return map;

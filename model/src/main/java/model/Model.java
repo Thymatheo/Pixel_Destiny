@@ -12,6 +12,8 @@ import model.level.ILevel;
 import model.level.Level;
 import model.map.IMap;
 import model.map.MapLoader;
+import model.physicsengine.IPhysicsEngine;
+import model.physicsengine.PhysicsEngine;
 
 /**
  * The Class Model.
@@ -23,6 +25,7 @@ public final class Model extends Observable implements IModel {
 	private ILevel level;
 	
 	private MapLoader maploader;
+	private IPhysicsEngine physicsEngine;
 	
 	private int idMap;
 
@@ -32,6 +35,7 @@ public final class Model extends Observable implements IModel {
 	public Model() {
 		this.setIdMap(22);
 		this.levelBuilder();
+		this.setPhysicsEngine(new PhysicsEngine(this.getLevel()));
 	}
 
 	public void levelBuilder() {
@@ -50,6 +54,11 @@ public final class Model extends Observable implements IModel {
 	public void  buildMap(int idMap) {
 		this.getMaploader().setMapSize(idMap);
 		this.getMaploader().setMapUnLoad(idMap);
+	}
+	
+	public void refresh() {
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public Observable getObservable() {
@@ -80,5 +89,13 @@ public final class Model extends Observable implements IModel {
 
 	public void setIdMap(int idMap) {
 		this.idMap = idMap;
+	}
+
+	public IPhysicsEngine getPhysicsEngine() {
+		return physicsEngine;
+	}
+
+	public void setPhysicsEngine(IPhysicsEngine physicsEngine) {
+		this.physicsEngine = physicsEngine;
 	}
 }

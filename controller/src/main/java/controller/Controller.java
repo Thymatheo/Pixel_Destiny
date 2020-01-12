@@ -63,6 +63,10 @@ public final class Controller implements IController {
 	private void setModel(final IModel model) {
 		this.model = model;
 	}
+	
+	public IModel getModel() {
+		return this.model;
+	}
 
 	/**
      * Order perform.

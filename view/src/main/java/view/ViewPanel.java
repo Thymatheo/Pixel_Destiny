@@ -6,6 +6,8 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import model.element.mobile.IMobileElements;
+import model.level.ILevel;
 import model.map.IMap;
 
 /**
@@ -67,13 +69,16 @@ class ViewPanel extends JPanel implements Observer {
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+		
 		IMap map =  this.getViewFrame().getModel().getLevel().getMap();
+		IMobileElements player = this.getViewFrame().getModel().getLevel().getPlayer();
 		System.out.println("x :"+map.getLenght()+" | y : "+map.getWidth());
 		for (int y=0; y < map.getWidth(); ++y) {
 			for (int x=0 ; x < map.getLenght(); ++x) {
 				if (map.getOnTheMap(x, y)!=null) {
 					if(map.getOnTheMap(x, y).getSprite().getConsoleImage()!="f") {
 						System.out.print(map.getOnTheMap(x, y).getSprite().getConsoleImage()+" ");
+						graphics.drawString(map.getOnTheMap(x, y).getSprite().getConsoleImage(), x*10, y*10);
 					}else {
 						System.out.print("  ");
 
@@ -86,5 +91,6 @@ class ViewPanel extends JPanel implements Observer {
 			System.out.println("");
 		
 		}
+		graphics.drawString(player.getSprite().getConsoleImage(), (int)player.getMobileposition().getMobilex(), (int)player.getMobileposition().getMobiley());
 	}
 }

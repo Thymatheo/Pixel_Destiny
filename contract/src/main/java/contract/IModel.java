@@ -3,6 +3,7 @@ package contract;
 import java.util.Observable;
 
 import model.level.ILevel;
+import model.physicsengine.IPhysicsEngine;
 
 /**
  * The Interface IModel.
@@ -19,4 +20,8 @@ public interface IModel {
 	Observable getObservable();
 
 	ILevel getLevel();
+	
+	IPhysicsEngine getPhysicsEngine();
+	
+	void refresh();
 }

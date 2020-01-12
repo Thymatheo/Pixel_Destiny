@@ -1,8 +1,8 @@
 package model.element;
 
 public interface IPosition {
-	float getX();
-	void setX(float x);
-	float getY();
-	void setY(float y);
+	int getX();
+	void setX(int x);
+	int getY();
+	void setY(int y);
 }

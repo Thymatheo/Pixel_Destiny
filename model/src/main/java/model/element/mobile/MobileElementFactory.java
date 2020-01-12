@@ -1,6 +1,7 @@
 package model.element.mobile;
 
-import model.element.IElement;
+import model.element.IPosition;
+import model.element.Sprite;
 
 public class MobileElementFactory {
 
@@ -8,10 +9,11 @@ public class MobileElementFactory {
 		
 	}
 	
-	public IElement createMobileElement(MobileElementType element) {
+	public IMobileElements createMobileElement(MobileElementType element,IPosition position) {
 		
 		switch(element) {
-		
+		case Player: 
+			return new Player(new Sprite("p"),position);
 		default:
 			return null;
 		}

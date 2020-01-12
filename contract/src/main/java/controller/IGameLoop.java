@@ -2,7 +2,7 @@ package controller;
 
 public interface IGameLoop {
 
-	int loopSpeed =  80;
+	int loopSpeed =  1000/30;
 	
 	void run();
 }

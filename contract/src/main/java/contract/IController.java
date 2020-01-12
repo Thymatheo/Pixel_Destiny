@@ -23,5 +23,7 @@ public interface IController {
 	void setPlayerOrder(ControllerOrder playerOrder);
 	
 	ControllerOrder getPlayerOrder();
+	
+	IModel getModel();
 
 }
