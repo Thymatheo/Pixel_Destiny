@@ -5,9 +5,12 @@
 package main;
 
 import contract.ControllerOrder;
+import contract.IController;
+import contract.IModel;
 import controller.Controller;
 import model.Model;
-import view.View;
+import view.IWindow;
+import view.Window;
 
 /**
  * The Class Main.
@@ -23,10 +26,11 @@ public abstract class Main {
      *            the arguments
      */
     public static void main(final String[] args) {
-        final Model model = new Model();
-        final View view = new View(model);
-        final Controller controller = new Controller(view, model);
-        view.setController(controller);
+        final IModel model = new Model();
+        final IWindow window = new Window(model);
+        window.getWindowFrame().getWindowPanel().start();
+        final IController controller = new Controller(window, model);
+        window.getWindowListener().setController(controller);
         controller.play();
     }
 }

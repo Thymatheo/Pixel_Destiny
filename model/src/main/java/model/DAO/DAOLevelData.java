@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import entity.LevelData;
-import entity.Size;
+import entity.MapSize;
 
 public class DAOLevelData extends DAOEntity<LevelData> {
 

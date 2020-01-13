@@ -7,4 +7,10 @@ public interface IElement {
 	IPosition getPosition();
 
 	boolean isUnPenetrable();
+	
+	ISize getSize();
+	
+	int width = 16;
+	
+	int lenght = 16;
 }

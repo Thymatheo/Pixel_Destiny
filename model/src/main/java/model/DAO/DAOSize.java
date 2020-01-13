@@ -5,9 +5,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import entity.Size;
+import entity.MapSize;
 
-public class DAOSize extends DAOEntity<Size> {
+public class DAOSize extends DAOEntity<MapSize> {
 
 	public DAOSize(Connection connection) throws SQLException {
 		super(connection);
@@ -15,26 +15,26 @@ public class DAOSize extends DAOEntity<Size> {
 	}
 
 	@Override
-	public boolean create(Size entity) {
+	public boolean create(MapSize entity) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean delete(Size entity) {
+	public boolean delete(MapSize entity) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean update(Size entity) {
+	public boolean update(MapSize entity) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Size find(int id) {
-		Size size = new Size();
+	public MapSize find(int id) {
+		MapSize size = new MapSize();
 		try {
 			final String sql = "{CALL get_map_size(?)}";
 			final CallableStatement call = this.getConnection().prepareCall(sql);
@@ -42,7 +42,7 @@ public class DAOSize extends DAOEntity<Size> {
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
 			if (resultSet.first()) {
-				size = new Size(resultSet.getInt("x"), resultSet.getInt("y"));
+				size = new MapSize(resultSet.getInt("x"), resultSet.getInt("y"));
 			}
 			return size;
 		} catch (final SQLException e) {
@@ -52,7 +52,7 @@ public class DAOSize extends DAOEntity<Size> {
 	}
 
 	@Override
-	public Size find(String code) {
+	public MapSize find(String code) {
 		// TODO Auto-generated method stub
 		return null;
 	}

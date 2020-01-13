@@ -5,7 +5,7 @@ import java.util.Observable;
 
 import contract.IModel;
 import entity.LevelData;
-import entity.Size;
+import entity.MapSize;
 import model.DAO.DAOLevelData;
 import model.DAO.DAOSize;
 import model.level.ILevel;

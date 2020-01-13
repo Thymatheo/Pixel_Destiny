@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import entity.Size;
+import entity.MapSize;
 import entity.UnLoadedMap;
 
 public class DAOUnLoadedMap extends DAOEntity<UnLoadedMap> {
@@ -45,7 +45,7 @@ public class DAOUnLoadedMap extends DAOEntity<UnLoadedMap> {
 		return null;
 	}
 	
-	public UnLoadedMap findAndFile(int idMap, Size size) {
+	public UnLoadedMap findAndFile(int idMap, MapSize size) {
 		UnLoadedMap map = new UnLoadedMap(size.getLenght(),size.getWidth());
 		try {
 			final String sql = "{call get_a_map(?)}";

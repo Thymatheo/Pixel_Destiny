@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import entity.LevelData;
 import model.element.IElement;
 import model.element.IPosition;
-import model.element.mobile.IMobileElements;
+import model.element.mobile.IMobileElement;
 import model.element.mobile.MobileElementFactory;
 import model.element.mobile.MobileElementType;
 import model.element.mobile.Player;
@@ -18,9 +18,9 @@ public class Level implements ILevel{
 
 	private LevelData data;
 	
-	private IMobileElements player;
+	private IMobileElement player;
 	
-	private ArrayList<IMobileElements> mobileElements;
+	private ArrayList<IMobileElement> mobileElements;
 	
 	private MobileElementFactory mobileElementFactory;
 
@@ -50,13 +50,6 @@ public class Level implements ILevel{
 		System.out.println("coord x spawn : " +spawnpoint.getX()+" coord y spawn : " +spawnpoint.getY());
 		if(spawnpoint!=null) {
 			this.setPlayer(this.getMobileElementFactory().createMobileElement(MobileElementType.Player, spawnpoint));
-			System.out.println
-			(
-				"coord x player spawn : " +
-				this.getPlayer().getMobileposition().getMobilex() +
-				" coord y player spawn : " +
-				this.getPlayer().getMobileposition().getMobiley()
-			);
 		}
 	}
 
@@ -80,22 +73,22 @@ public class Level implements ILevel{
 	}
 
 
-	public IMobileElements getPlayer() {
+	public IMobileElement getPlayer() {
 		return player;
 	}
 
 
-	public void setPlayer(IMobileElements player) {
+	public void setPlayer(IMobileElement player) {
 		this.player = player;
 	}
 
 
-	public ArrayList<IMobileElements> getMobileElements() {
+	public ArrayList<IMobileElement> getMobileElements() {
 		return mobileElements;
 	}
 
 
-	public void setMobileElements(ArrayList<IMobileElements> mobileElements) {
+	public void setMobileElements(ArrayList<IMobileElement> mobileElements) {
 		this.mobileElements = mobileElements;
 	}
 

@@ -1,5 +1,7 @@
 package contract;
 
+import view.IWindow;
+
 /**
  * The Interface IController.
  *
@@ -25,5 +27,9 @@ public interface IController {
 	ControllerOrder getPlayerOrder();
 	
 	IModel getModel();
+	
+	IWindow getWindow();
+	
+	void play();
 
 }

@@ -3,8 +3,9 @@ package model.element;
 public class GameObject {
 	private ISprite sprite;
 	private IPosition position;
+	private ISize size;
 	
-	public GameObject(ISprite sprite,IPosition position) {
+	public GameObject(ISprite sprite,IPosition position, ISize size) {
 		this.setSprite(sprite);
 		this.setPosition(position);
 	}
@@ -23,5 +24,9 @@ public class GameObject {
 
 	public void setPosition(IPosition position) {
 		this.position = position;
+	}
+	
+	public ISize getSize() {
+		return this.size;
 	}
 }

@@ -1,6 +1,6 @@
 package model.map;
 
-import entity.Size;
+import entity.MapSize;
 import entity.UnLoadedMap;
 import model.element.Position;
 import model.element.staticelement.StaticElementFactory;
@@ -13,7 +13,7 @@ private StaticElementFactory staticFactory;
 		this.setStaticFactory(new StaticElementFactory());
 	}
 	
-	public IMap makeAMap(UnLoadedMap mapLoaded,Size mapSize) {
+	public IMap makeAMap(UnLoadedMap mapLoaded,MapSize mapSize) {
 		System.out.println(mapLoaded);
 		System.out.println(mapSize);
 		System.out.println(mapLoaded.getOnTheMap(0,0));

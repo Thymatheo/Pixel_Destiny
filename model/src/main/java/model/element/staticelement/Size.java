@@ -1,7 +1,9 @@
-package entity;
+package model.element.staticelement;
 
-public class Size extends Entity{
+import model.element.ISize;
 
+public class Size implements ISize{
+ 
 	private int width;
 	private int lenght;
 
@@ -16,12 +18,14 @@ public class Size extends Entity{
 		this.setWidth(0);
 	}
 
+	@Override
 	public int getWidth() {
 		return width;
 	}
 	public void setWidth(int width) {
 		this.width = width;
 	}
+	@Override
 	public int getLenght() {
 		return lenght;
 	}

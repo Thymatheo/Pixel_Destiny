@@ -3,24 +3,25 @@ package model.element.mobile;
 
 import model.element.Element;
 import model.element.IPosition;
+import model.element.ISize;
 import model.element.ISprite;
+import model.element.Position;
 
-public class MobileElement extends Element implements IMobileElements{
+public class MobileElement extends Element implements IMobileElement{
 	
-	private int moveSpeed =  3;
+	private int moveSpeed =  100;
 	
-	private IMobilePosition mobileposition;
-
+	private IPosition mobilePosition;
+	
 	public MobileElement(Element element) {
 		super(element);
 		
 		// TODO Auto-generated constructor stub
 	}
 
-	public MobileElement(ISprite sprite, IPosition position) {
-		super(sprite, position);
-		this.setMobileposition(new MobilePosition(position.getX()*10,position.getY()*10));
-		// TODO Auto-generated constructor stub
+	public MobileElement(ISprite sprite, IPosition position,ISize size) {
+		super(sprite, position, size);
+		this.setMobilePosition(new Position(position.getX()*1000,position.getY()*1000));
 	}
 
 	@Override
@@ -32,12 +33,11 @@ public class MobileElement extends Element implements IMobileElements{
 		this.moveSpeed = moveSpeed;
 	}
 
-	public IMobilePosition getMobileposition() {
-		return this.mobileposition;
+	public IPosition getMobilePosition() {
+		return mobilePosition;
 	}
 
-	public void setMobileposition(IMobilePosition mobileposition) {
-		this.mobileposition = mobileposition;
+	public void setMobilePosition(IPosition mobilePosition) {
+		this.mobilePosition = mobilePosition;
 	}
-
 }

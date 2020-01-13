@@ -4,6 +4,7 @@ import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
+import view.IWindow;
 
 /**
  * The Class Controller.
@@ -11,7 +12,7 @@ import contract.IView;
 public final class Controller implements IController {
 
 	/** The view. */
-	private IView		view;
+	private IWindow		window;
 
 	/** The model. */
 	private IModel	model;
@@ -23,13 +24,13 @@ public final class Controller implements IController {
 	/**
 	 * Instantiates a new controller.
 	 *
-	 * @param view
+	 * @param window
 	 *          the view
 	 * @param model
 	 *          the model
 	 */
-	public Controller(final IView view, final IModel model) {
-		this.setView(view);
+	public Controller(final IWindow window, final IModel model) {
+		this.setWindow(window);
 		this.setModel(model);
 	}
 
@@ -50,8 +51,12 @@ public final class Controller implements IController {
      * @param pview
      *            the new view
      */
-	private void setView(final IView pview) {
-		this.view = pview;
+	private void setWindow(final IWindow window) {
+		this.window = window ;
+	}
+	
+	public IWindow getWindow() {
+		return this.window;
 	}
 
 	/**

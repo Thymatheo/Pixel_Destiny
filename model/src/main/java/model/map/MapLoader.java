@@ -2,7 +2,7 @@ package model.map;
 
 import java.sql.SQLException;
 
-import entity.Size;
+import entity.MapSize;
 import entity.UnLoadedMap;
 import model.DAO.DAOSize;
 import model.DAO.DAOUnLoadedMap;
@@ -10,7 +10,7 @@ import model.DBConnection;
 
 public class MapLoader {
 
-	private Size mapSize;
+	private MapSize mapSize;
 	private UnLoadedMap mapUnLoad;
 	private MapMaker mapmaker;
 	
@@ -20,7 +20,7 @@ public class MapLoader {
 	
 	public void setMapSize(int idMap) {
 		try {
-			this.setMapSize(new Size());
+			this.setMapSize(new MapSize());
 			final DAOSize daoSize = new DAOSize(DBConnection.getInstance().getConnection());
 			this.setMapSize(daoSize.find(idMap));
 		} catch (final SQLException e) {
@@ -38,11 +38,11 @@ public class MapLoader {
 			e.printStackTrace();
 		}
 	}
-	public Size getMapSize() {
+	public MapSize getMapSize() {
 		return mapSize;
 	}
 
-	public void setMapSize(Size mapSize) {
+	public void setMapSize(MapSize mapSize) {
 		this.mapSize = mapSize;
 	}
 
