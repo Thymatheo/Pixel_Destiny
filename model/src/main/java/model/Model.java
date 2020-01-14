@@ -5,12 +5,9 @@ import java.util.Observable;
 
 import contract.IModel;
 import entity.LevelData;
-import entity.MapSize;
 import model.DAO.DAOLevelData;
-import model.DAO.DAOSize;
 import model.level.ILevel;
 import model.level.Level;
-import model.map.IMap;
 import model.map.MapLoader;
 import model.physicsengine.IPhysicsEngine;
 import model.physicsengine.PhysicsEngine;

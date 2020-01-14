@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import entity.MapSize;
 import entity.UnLoadedMap;
-import model.DAO.DAOSize;
+import model.DAO.DAOMapSize;
 import model.DAO.DAOUnLoadedMap;
 import model.DBConnection;
 
@@ -21,7 +21,7 @@ public class MapLoader {
 	public void setMapSize(int idMap) {
 		try {
 			this.setMapSize(new MapSize());
-			final DAOSize daoSize = new DAOSize(DBConnection.getInstance().getConnection());
+			final DAOMapSize daoSize = new DAOMapSize(DBConnection.getInstance().getConnection());
 			this.setMapSize(daoSize.find(idMap));
 		} catch (final SQLException e) {
 			e.printStackTrace();

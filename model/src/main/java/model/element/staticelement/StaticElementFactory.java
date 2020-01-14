@@ -24,11 +24,11 @@ public class StaticElementFactory implements IStaticElementFactory{
 	public IElement createStaticElement(IPosition pos, String consol_log_element) {
 		switch(consol_log_element) {
 		case("x"):
-			return new IsPenetrable(new BorderLevel(new Sprite("x"),pos,new Size(IElement.lenght, IElement.width)));
+			return new IsPenetrable(new BorderLevel(new Sprite("x"),pos,new Size(16, 16)));
 		case("s"):
-			return new Spawn(new Sprite("s"), pos,new Size(IElement.lenght, IElement.width));
+			return new Spawn(new Sprite("s"), pos,new Size(16, 16));
 		case("f"):
-			return new Floor(new Sprite("f"),pos,new Size(IElement.lenght, IElement.width));
+			return new Floor(new Sprite("f"),pos,new Size(16, 16));
 		default:
 			return null;
 		}

@@ -1,22 +1,18 @@
 package model.element;
 
-import java.awt.Image;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 public class Sprite implements ISprite {
 
 		private String ConsoleImage;
 		
 		private String ImageName;
 		
-		private Image image;
+		private ITexture texture;
 		
 		public Sprite(String consoleImage,String imageName) {
 			this.setConsoleImage(consoleImage);
 			this.setImageName(imageName);
-			this.loadImage(this.getImageName());
+			this.setTexture(new Texture());
+			this.setTexture(this.getTexture().loadImage(imageName));
 		}
 		
 		public Sprite(String consoleImage) {
@@ -38,20 +34,12 @@ public class Sprite implements ISprite {
 		public void setImageName(String imageName) {
 			ImageName = imageName;
 		}
-		
-		public void loadImage(String imageName) {
-			 try {
-				this.setImage(ImageIO.read(getClass().getResource("/"+ this.getImageName())));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+
+		public ITexture getTexture() {
+			return texture;
 		}
 
-		public Image getImage() {
-			return image;
-		}
-
-		public void setImage(Image image) {
-			this.image = image;
+		public void setTexture(ITexture texture) {
+			this.texture = texture;
 		}
 }

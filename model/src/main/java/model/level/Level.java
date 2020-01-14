@@ -3,12 +3,10 @@ package model.level;
 import java.util.ArrayList;
 
 import entity.LevelData;
-import model.element.IElement;
 import model.element.IPosition;
 import model.element.mobile.IMobileElement;
 import model.element.mobile.MobileElementFactory;
 import model.element.mobile.MobileElementType;
-import model.element.mobile.Player;
 import model.element.staticelement.Spawn;
 import model.map.IMap;
 

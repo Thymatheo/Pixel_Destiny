@@ -14,60 +14,60 @@ public class GameLoop implements IGameLoop{
 	
 	private boolean render;
 	
-	private long startTime;
+	private long before;
 	
-
 	public GameLoop(IController controller) {
 		this.setController(controller);
 	}
 
 	public void run() {
+		
 		IWindowPanel panel = this.getController().getWindow().getWindowFrame().getWindowPanel();
 		panel.start();
+		this.setBefore(System.nanoTime());
 		while(panel.isRunning()) {
-			//System.out.println("coucou");
-			IMobileElement player = this.getController().getModel().getLevel().getPlayer();
-			IPhysicsEngine engine = this.getController().getModel().getPhysicsEngine();
-			switch (this.getController().getPlayerOrder()) {
-			case Up:
-				engine.MoveMobile(0, -1, player);
-				System.out.println("En haut");
-				break;
-			case Down:
-				engine.MoveMobile(0, 1, player);
-				break;
-			case Left:
-				engine.MoveMobile(-1, 0, player);
-				break;
-			case Right:
-				engine.MoveMobile(1, 0, player);
-				System.out.println("A Droite");
-				break;
-			case Super: 
-				System.out.println("utilisation du super");
-			default:
-				break;
+			if(verifTimer()==true) {
+				panel.render();
+				panel.setTicks(panel.getTicks()+1);
+			}else if (verifTimer()==false){
+				System.out.println("update game");
+				IMobileElement player = this.getController().getModel().getLevel().getPlayer();
+				IPhysicsEngine engine = this.getController().getModel().getPhysicsEngine();
+				switch (this.getController().getPlayerOrder()) {
+				case Up:
+					engine.MoveMobile(0, -1, player);
+					System.out.println("En haut");
+					break;
+				case Down:
+					engine.MoveMobile(0, 1, player);
+					break;
+				case Left:
+					engine.MoveMobile(-1, 0, player);
+					break;
+				case Right:
+					engine.MoveMobile(1, 0, player);
+					System.out.println("A Droite");
+					break;
+				case Super: 
+					System.out.println("utilisation du super");
+				default:
+					break;
+				}
+				this.getController().getWindow().getWindowListener().listen();
+				this.getController().setPlayerOrder(ControllerOrder.Nothing);
+				panel.setFrames(panel.getFrames()+1);
 			}
-
-			/*System.out.println
-			(
-				"coord player map : x :" + 
-				player.getPosition().getX() +
-				" | y : "+ 
-				player.getPosition().getY()
-			);
-			
-			System.out.println
-			(
-				"coord mobile player map : x :" + 
-				player.getMobilePosition().getX() +
-				" | y : "+ 
-				player.getMobilePosition().getY()
-			);*/
-
-			this.getController().setPlayerOrder(ControllerOrder.Nothing);
-			panel.render();
+			panel.showFrameRate(panel.getTimer());
 		}
+	}
+	
+	private boolean verifTimer() {
+		long now = System.nanoTime();
+		if (now - this.getBefore() > framesByNano) {
+			this.before += framesByNano;
+			return true;
+		}
+		return false;
 	}
 	
 	//private bool
@@ -96,12 +96,11 @@ public class GameLoop implements IGameLoop{
 		this.tick = tick;
 	}
 
-	public long getStartTime() {
-		return startTime;
+	public long getBefore() {
+		return before;
 	}
 
-	public void setStartTime(long startTime) {
-		this.startTime = startTime;
+	public void setBefore(long before) {
+		this.before = before;
 	}
-
 }

@@ -8,6 +8,7 @@ public class GameObject {
 	public GameObject(ISprite sprite,IPosition position, ISize size) {
 		this.setSprite(sprite);
 		this.setPosition(position);
+		this.setSize(size);
 	}
 
 	public ISprite getSprite() {
@@ -24,6 +25,10 @@ public class GameObject {
 
 	public void setPosition(IPosition position) {
 		this.position = position;
+	}
+	
+	public void setSize(ISize size) {
+		this.size = size;
 	}
 	
 	public ISize getSize() {

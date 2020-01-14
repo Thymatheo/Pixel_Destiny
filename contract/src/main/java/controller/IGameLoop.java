@@ -2,7 +2,11 @@ package controller;
 
 public interface IGameLoop {
 
-	int loopSpeed =  1000/30;
+	int framesRate = 60;
+	
+	double nanoSeconds = Math.pow(10, 9);
+	
+	double framesByNano = nanoSeconds/framesRate;
 	
 	void run();
 }

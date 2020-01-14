@@ -2,6 +2,7 @@ package view;
 
 
 import org.lwjgl.input.Keyboard;
+
 import contract.IController;
 
 public class WindowListener implements IWindowListener {
@@ -15,8 +16,8 @@ public class WindowListener implements IWindowListener {
 		this.setWindow(window);
 	}
 	
-	private void listen() {
-		
+	public void listen() {
+		//System.out.print(Keyboard.getEventCharacter());
 	}
 
 	public IController getController() {

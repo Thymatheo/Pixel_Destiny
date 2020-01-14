@@ -4,7 +4,6 @@
  */
 package main;
 
-import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
 import controller.Controller;

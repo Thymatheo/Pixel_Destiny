@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 import entity.MapSize;
 
-public class DAOSize extends DAOEntity<MapSize> {
+public class DAOMapSize extends DAOEntity<MapSize> {
 
-	public DAOSize(Connection connection) throws SQLException {
+	public DAOMapSize(Connection connection) throws SQLException {
 		super(connection);
 		// TODO Auto-generated constructor stub
 	}
