@@ -12,7 +12,7 @@ public class Sprite implements ISprite {
 			this.setConsoleImage(consoleImage);
 			this.setImageName(imageName);
 			this.setTexture(new Texture());
-			this.setTexture(this.getTexture().loadImage(imageName));
+			this.setTexture(this.getTexture().loadImage(this.getImageName()));
 		}
 		
 		public Sprite(String consoleImage) {

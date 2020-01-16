@@ -7,6 +7,7 @@ import org.lwjgl.util.glu.GLU;
 import contract.IModel;
 import static org.lwjgl.opengl.GL11.*;
 
+import model.element.IElement;
 import model.element.ISize;
 import model.map.IMap;
 
@@ -76,14 +77,28 @@ public class WindowPanel implements IWindowPanel {
 					glColor3f(0x00, 0x00,0x00);
 				}
 				glVertex2f(x*size.getLenght(), y*size.getWidth());
-				glVertex2f(x*size.getLenght()+16, y*size.getWidth());
-				glVertex2f(x*size.getLenght()+16, y*size.getWidth()+16);
-				glVertex2f(x*size.getLenght(), y*size.getWidth()+16);
+				glVertex2f(x*size.getLenght()+scale, y*size.getWidth());
+				glVertex2f(x*size.getLenght()+scale, y*size.getWidth()+scale);
+				glVertex2f(x*size.getLenght(), y*size.getWidth()+scale);
 
 			}
 		}
-		
 		glEnd();
+	}
+	
+	private void renderTexture(IElement element) {
+		ISize size = element.getSize();
+		glBegin(GL_QUADS);
+		glTexCoord2f(x*size.getLenght(), y*size.getWidth());
+		glVertex2f(x*size.getLenght(), y*size.getWidth());
+		glTexCoord2f(x*size.getLenght()+scale, y*size.getWidth());
+		glVertex2f(x*size.getLenght()+scale, y*size.getWidth());
+		glTexCoord2f(x*size.getLenght()+scale, y*size.getWidth()+scale);
+		glVertex2f(x*size.getLenght()+scale, y*size.getWidth()+scale);
+		glTexCoord2f(x*size.getLenght(), y*size.getWidth()+scale);
+		glVertex2f(x*size.getLenght(), y*size.getWidth()+scale);
+	 	glEnd();
+		
 	}
 	
 	public void showFrameRate(long timer) {

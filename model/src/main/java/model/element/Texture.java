@@ -100,4 +100,12 @@ public class Texture implements ITexture {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public void bind() {
+		glBindTexture(GL_TEXTURE_2D, this.getId());
+	}
+	
+	public void unBind() {
+		glBindTexture(GL_TEXTURE_2D, this.getId());
+	}
 }

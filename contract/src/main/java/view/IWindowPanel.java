@@ -5,7 +5,8 @@ public interface IWindowPanel {
 	int millis = 1000;
 	int resetFrames = 0;
 	int resetTicks = 0;
-	
+	int scale = 16;
+
 	void start();
 	boolean isRunning();
 	void render();
@@ -13,7 +14,6 @@ public interface IWindowPanel {
 	void setTicks(int ticks);
 	int getFrames();
 	void setFrames(int frames);
-	
 	long getTimer();
 	void showFrameRate(long timer);
 	

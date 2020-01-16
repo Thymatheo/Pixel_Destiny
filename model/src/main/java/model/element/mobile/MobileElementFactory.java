@@ -1,5 +1,6 @@
 package model.element.mobile;
 
+import model.element.ElementType;
 import model.element.IElement;
 import model.element.IPosition;
 import model.element.Sprite;
@@ -15,7 +16,7 @@ public class MobileElementFactory {
 		
 		switch(element) {
 		case Player: 
-			return new Player(new Sprite("p"),position,new Size(IElement.lenght, IElement.width));
+			return new Player(new Sprite("p",""+ElementType.Player+".png"),position,new Size(IElement.lenght, IElement.width));
 		default:
 			return null;
 		}

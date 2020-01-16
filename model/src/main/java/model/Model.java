@@ -45,7 +45,7 @@ public final class Model extends Observable implements IModel {
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
-		this.setLevel(new Level(data,this.getMaploader().getMapmaker().makeAMap(this.getMaploader().getMapUnLoad(), this.getMaploader().getMapSize())));
+		this.setLevel(new Level(data,this.getMaploader().getMapmaker().makeAMap(this.getMaploader().getMapUnLoad(), this.getMaploader().getMapSize(),data.getLabelPlanet())));
 	}
 	
 	public void  buildMap(int idMap) {
