@@ -3,6 +3,7 @@ package model.level;
 import java.util.ArrayList;
 
 import entity.LevelData;
+import model.element.IElement;
 import model.element.IPosition;
 import model.element.mobile.IMobileElement;
 import model.element.mobile.MobileElementFactory;
@@ -30,14 +31,9 @@ public class Level implements ILevel{
 	}
 	
 	private IPosition findSpawnPosition() {
-		
-		for (int x = 0; x < this.getMap().getLenght();++x) {
-			for (int y = 0; y < this.getMap().getWidth();++y) {
-				if(this.getMap().getOnTheMap(x, y) !=null) {
-					if(this.getMap().getOnTheMap(x, y).getClass() == Spawn.class) {
-						return this.getMap().getOnTheMap(x, y).getPosition();
-					}
-				}
+		for (IElement element : this.getMap().getContent()) {
+			if(element.getClass() == Spawn.class) {
+				return element.getPosition();
 			}
 		}
 		return null;

@@ -1,13 +1,10 @@
 package model.map;
 
+import java.util.ArrayList;
+
 import model.element.IElement;
 
 public interface IMap {
-	void setOnTheMap(IElement element, int x, int y);
-
-	int getLenght();
-
-	int getWidth();
-
-	IElement getOnTheMap(int x, int y);
+	void addOnTheMap(IElement element);
+	ArrayList<IElement> getContent();
 }

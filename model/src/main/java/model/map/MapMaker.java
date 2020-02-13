@@ -23,12 +23,11 @@ private StaticElementFactory staticFactory;
 		System.out.println("map width : "+mapSize.getWidth());
 		this.getStaticFactory().getTextureMapLoader().setPlanetLabel(planetlabel);
 		this.getStaticFactory().getTextureMapLoader().loadTexture();
-		IMap map = new Map(mapSize.getLenght(),mapSize.getWidth());
+		IMap map = new Map();
 		for(int x = 0; x< mapSize.getLenght();++x) {
 			for(int y = 0; y< mapSize.getWidth();++y) {
 				if (mapLoaded.getOnTheMap(x, y)!=null) {
-					map.setOnTheMap(this.getStaticFactory().createStaticElement(new Position(x,y), mapLoaded.getOnTheMap(x, y),planetlabel), x, y);
-
+					map.addOnTheMap(this.getStaticFactory().createStaticElement(new Position(x,y), mapLoaded.getOnTheMap(x, y),planetlabel));
 				}
 			}
 		}
