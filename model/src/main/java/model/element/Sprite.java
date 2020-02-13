@@ -8,11 +8,10 @@ public class Sprite implements ISprite {
 		
 		private ITexture texture;
 		
-		public Sprite(String consoleImage,String imageName) {
+		public Sprite(String consoleImage,String imageName,ITexture texture) {
 			this.setConsoleImage(consoleImage);
 			this.setImageName(imageName);
-			this.setTexture(new Texture());
-			this.setTexture(this.getTexture().loadImage(this.getImageName()));
+			this.setTexture(texture);
 		}
 		
 		public Sprite(String consoleImage) {
@@ -34,6 +33,7 @@ public class Sprite implements ISprite {
 		public void setImageName(String imageName) {
 			ImageName = imageName;
 		}
+
 
 		public ITexture getTexture() {
 			return texture;

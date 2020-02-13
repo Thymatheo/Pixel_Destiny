@@ -2,8 +2,21 @@ package model.element;
 
 public interface ITexture {
 	
-	ITexture loadImage(String imagNname);
+	void loadImage(String imagNname);
 	
 	void bind();
+	
 	void unBind();
+
+	int getId();
+	
+	int getHeight();
+	
+	int getWidth();
+	
+	String getTextureLabel();
+	
+	void render();
+	
+	
 }

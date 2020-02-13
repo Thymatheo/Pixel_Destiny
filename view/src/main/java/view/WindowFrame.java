@@ -7,6 +7,8 @@ import org.lwjgl.opengl.DisplayMode;
 import contract.IController;
 import contract.IModel;
 
+
+
 public class WindowFrame implements IWindowFrame{
 
 	private IController controller;

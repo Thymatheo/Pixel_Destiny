@@ -16,7 +16,7 @@ public class MobileElementFactory {
 		
 		switch(element) {
 		case Player: 
-			return new Player(new Sprite("p",""+ElementType.Player+".png"),position,new Size(IElement.lenght, IElement.width));
+			//return new Player(new Sprite("p",""+ElementType.Player+".png"),position,new Size(IElement.lenght, IElement.width));
 		default:
 			return null;
 		}

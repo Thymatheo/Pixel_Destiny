@@ -24,4 +24,6 @@ public interface IModel {
 	IPhysicsEngine getPhysicsEngine();
 	
 	void refresh();
+
+	void levelBuilder();
 }

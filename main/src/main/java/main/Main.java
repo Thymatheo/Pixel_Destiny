@@ -28,6 +28,7 @@ public abstract class Main {
         final IModel model = new Model();
         final IWindow window = new Window(model);
         window.getWindowFrame().getWindowPanel().start();
+        model.levelBuilder();
         final IController controller = new Controller(window, model);
         window.getWindowListener().setController(controller);
         controller.play();

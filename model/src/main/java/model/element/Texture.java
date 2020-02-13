@@ -3,70 +3,89 @@ package model.element;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
 
 import javax.imageio.ImageIO;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL12.*;
 
+
 import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.Display;
 
 public class Texture implements ITexture {
 
 	private BufferedImage image;
-	
-	private int lenght;
+
+	private String TextureLabel;
+
+	private String TexturePath;
+
+	private int height;
 	private int width;
 	private int id;
-	
-	public Texture (int lenght, int width, int id ) {
-		this.setLenght(lenght);
+
+	public Texture (int height, int width, int id) {
+		this.setHeight(height);
 		this.setWidth(width);
 		this.setId(id);
 	}
-	
+
 	public Texture () {
-		 
+
 	}
-	public Texture loadImage(String imageName) {
-		 try {
-			this.setImage(ImageIO.read(getClass().getResource("/"+ imageName)));
+
+	public Texture(String textureLabel, String planet) {
+		this.setTextureLabel(textureLabel);
+		this.setTexturePath("/"+planet+"/"+this.getTextureLabel()+".png");
+		System.out.println(this.getTextureLabel());
+		this.loadImage(this.getTextureLabel());
+	}
+
+	public void loadImage(String imageName) {
+		int textureID = glGenTextures();
+		this.setId(textureID);
+		System.out.println(this.getId());
+		glBindTexture(GL_TEXTURE_2D, textureID);
+		try {
+
+			BufferedImage img = ImageIO.read(this.getClass().getResource(this.getTexturePath()));
+			int[] pixels = img.getRGB(0, 0, img.getWidth(), img.getHeight(), null, 0, img.getWidth());
+			FloatBuffer pixelsBuffer = BufferUtils.createByteBuffer(pixels.length * 4 * 4).asFloatBuffer();
+
+
+			for(int y = img.getHeight()-1;y>=0;--y)
+			{
+				for(int x = 0;x <img.getWidth();++x){
+					int pixel = pixels[y*img.getWidth()+x];
+					float a = ((pixel >> 24) & 0xFF)/255f;
+					float r = ((pixel >> 16) & 0xFF)/255f;
+					float g = ((pixel >> 8) & 0xFF)/255f;
+					float b = ((pixel >> 0) & 0xFF)/255f;
+
+					pixelsBuffer.put(r);
+					pixelsBuffer.put(g);
+					pixelsBuffer.put(b);
+					pixelsBuffer.put(a);
+				}
+			}
+			pixelsBuffer.flip();
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, this.getWidth(), this.getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, pixelsBuffer);
+
+			this.setId(textureID);
+			this.setHeight(img.getHeight());
+			this.setWidth(img.getWidth());
+
+
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.out.println("fails to load images");
 		}
-		this.setLenght(this.getImage().getHeight());
-		this.setWidth(this.getImage().getWidth());
-		
-		int[] pixels = new int[this.getLenght()*this.getWidth()];
-		image.getRGB(0, 0,this.getLenght(),this.getWidth(),pixels,0,this.getLenght());
-		
-		ByteBuffer buffer = BufferUtils.createByteBuffer(this.getLenght()*this.getWidth()*4);
-		
 
-		for (int y = 0; y < this.getWidth(); y++) {
-			for (int x = 0; x < this.getLenght(); x++) {
-				int i = pixels[x + y * this.getWidth()];
-				buffer.put((byte) ((i >> 16) & 0xFF));
-				buffer.put((byte) ((i >> 8) & 0xFF));
-				buffer.put((byte) ((i) & 0xFF));
-				buffer.put((byte) ((i >> 24) & 0xFF));
-			}
-		}
-		
-		buffer.flip();
-		
-		int id = glGenTextures();
-		glBindTexture(GL_TEXTURE_2D, id);
-		
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, this.getWidth(), this.getLenght(), 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-		
-		return new Texture(this.getWidth(), this.getLenght(), id);
 	}
 
 	public BufferedImage getImage() {
@@ -77,12 +96,12 @@ public class Texture implements ITexture {
 		this.image = image;
 	}
 
-	public int getLenght() {
-		return lenght;
+	public int getHeight() {
+		return height;
 	}
 
-	public void setLenght(int lenght) {
-		this.lenght = lenght;
+	public void setHeight(int height) {
+		this.height = height;
 	}
 
 	public int getWidth() {
@@ -100,12 +119,49 @@ public class Texture implements ITexture {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public void bind() {
+		System.out.println(this.getId());
 		glBindTexture(GL_TEXTURE_2D, this.getId());
 	}
-	
+
 	public void unBind() {
-		glBindTexture(GL_TEXTURE_2D, this.getId());
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+
+	public String getTextureLabel() {
+		return TextureLabel;
+	}
+
+	public void setTextureLabel(String textureLabel) {
+		TextureLabel = textureLabel;
+	}
+
+	public String getTexturePath() {
+		return TexturePath;
+	}
+
+	public void setTexturePath(String texturePath) {
+		TexturePath = texturePath;
+	}
+
+	public void render() {
+		this.bind();
+		glPushMatrix(); 
+		glBegin(GL_QUADS);
+		glTexCoord2d(0, 0);
+		glVertex2d(0, 0);
+
+		glTexCoord2d(0, 1);
+		glVertex2d(0, 32);
+
+		glTexCoord2d(1, 1);
+		glVertex2d(32, 32);
+
+		glTexCoord2d(1, 0);
+		glVertex2d(32, 0);
+		glEnd();
+		glPopMatrix();
+		Display.sync(60);
 	}
 }

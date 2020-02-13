@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import contract.ControllerOrder;
 import contract.IModel;
 
-public class Window implements IWindow,Runnable{
+public class Window implements IWindow{
 
 	private IModel model;
 	private IWindowListener windowListener;
@@ -58,11 +58,6 @@ public class Window implements IWindow,Runnable{
 
 	public void setWindowListener(IWindowListener windowListener) {
 		this.windowListener = windowListener;
-	}
-
-	@Override
-	public void run() {
-			
 	}
 
 

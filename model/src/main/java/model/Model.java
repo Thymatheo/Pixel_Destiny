@@ -31,7 +31,7 @@ public final class Model extends Observable implements IModel {
 	 */
 	public Model() {
 		this.setIdMap(22);
-		this.levelBuilder();
+		//this.levelBuilder();
 		this.setPhysicsEngine(new PhysicsEngine(this.getLevel()));
 	}
 
